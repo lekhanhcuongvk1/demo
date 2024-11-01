@@ -1,0 +1,115 @@
+{
+    "hospital": [
+      {
+        "id": 1,
+        "name": "Central Hospital",
+        "address": "123 Main St, Citytown",
+        "phone": "+1 234 567 8900",
+        "email": "contact@centralhospital.com",
+        "website": "https://www.centralhospital.com",
+        "description": "A leading healthcare provider with a range of specialized services.",
+        "created_at": "2024-01-15T08:30:00Z",
+        "updated_at": "2024-01-15T08:30:00Z"
+      },
+      {
+        "id": 2,
+        "name": "City Health Center",
+        "address": "456 Elm St, Villagetown",
+        "phone": "+1 987 654 3210",
+        "email": "info@cityhealthcenter.com",
+        "website": "https://www.cityhealthcenter.com",
+        "description": "Offering comprehensive health services for the local community.",
+        "created_at": "2024-02-20T09:00:00Z",
+        "updated_at": "2024-02-20T09:00:00Z"
+      },
+      {
+        "id": 3,
+        "name": "Regional Medical Clinic",
+        "address": "789 Maple Ave, Countryside",
+        "phone": "+1 555 123 4567",
+        "email": "admin@regionalclinic.com",
+        "website": "https://www.regionalclinic.com",
+        "description": "Providing quality healthcare services for rural areas.",
+        "created_at": "2024-03-10T10:15:00Z",
+        "updated_at": "2024-03-10T10:15:00Z"
+      },
+      {
+        "id": 4,
+        "name": "Downtown Hospital",
+        "address": "101 Oak St, Metropolis",
+        "phone": "+1 444 111 2222",
+        "email": "contact@downtownhospital.com",
+        "website": "https://www.downtownhospital.com",
+        "description": "A modern hospital located in the heart of the city.",
+        "created_at": "2024-04-05T11:30:00Z",
+        "updated_at": "2024-04-05T11:30:00Z"
+      },
+      {
+        "id": 5,
+        "name": "Northside Community Clinic",
+        "address": "202 Birch Rd, Northville",
+        "phone": "+1 333 444 5555",
+        "email": "support@northsideclinic.com",
+        "website": "https://www.northsideclinic.com",
+        "description": "Community-focused healthcare center for Northville residents.",
+        "created_at": "2024-05-12T08:45:00Z",
+        "updated_at": "2024-05-12T08:45:00Z"
+      },
+      {
+        "id": 6,
+        "name": "Green Valley Hospital",
+        "address": "303 Cedar St, Greendale",
+        "phone": "+1 222 333 4444",
+        "email": "info@greenvalleyhospital.com",
+        "website": "https://www.greenvalleyhospital.com",
+        "description": "Environmentally friendly hospital with advanced facilities.",
+        "created_at": "2024-06-18T09:15:00Z",
+        "updated_at": "2024-06-18T09:15:00Z"
+      },
+      {
+        "id": 7,
+        "name": "Lakeside Health Center",
+        "address": "404 Lake St, Lakewood",
+        "phone": "+1 111 555 6666",
+        "email": "contact@lakesidehealth.com",
+        "website": "https://www.lakesidehealth.com",
+        "description": "Comprehensive healthcare services by the lakeside.",
+        "created_at": "2024-07-22T07:45:00Z",
+        "updated_at": "2024-07-22T07:45:00Z"
+      },
+      {
+        "id": 8,
+        "name": "Sunnybrook Hospital",
+        "address": "505 Sun Ave, Sunnyville",
+        "phone": "+1 666 777 8888",
+        "email": "admin@sunnybrookhospital.com",
+        "website": "https://www.sunnybrookhospital.com",
+        "description": "Hospital known for patient-centered care and sunny atmosphere.",
+        "created_at": "2024-08-14T06:20:00Z",
+        "updated_at": "2024-08-14T06:20:00Z"
+      },
+      {
+        "id": 9,
+        "name": "Westside General Hospital",
+        "address": "606 West St, Westville",
+        "phone": "+1 999 888 7777",
+        "email": "info@westsidegeneral.com",
+        "website": "https://www.westsidegeneral.com",
+        "description": "General hospital providing a full range of healthcare services.",
+        "created_at": "2024-09-09T10:00:00Z",
+        "updated_at": "2024-09-09T10:00:00Z"
+      },
+      {
+        "id": 10,
+        "name": "East End Medical Center",
+        "address": "707 East Rd, Eastwood",
+        "phone": "+1 777 999 1111",
+        "email": "support@eastendmedical.com",
+        "website": "https://www.eastendmedical.com",
+        "description": "Medical center with a strong focus on preventive care.",
+        "created_at": "2024-10-01T09:30:00Z",
+        "updated_at": "2024-10-01T09:30:00Z"
+      }
+    ]
+  }
+  

@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Danh sách bệnh viện</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/tailwindcss/2.2.19/tailwind.min.css" rel="stylesheet">
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+  <style>
+    .hero-bg {
+      background: linear-gradient(135deg, #1e3a8a 0%, #3b82f6 100%);
+    }
+
+    .glass-effect {
+      background: rgba(255, 255, 255, 0.1);
+      backdrop-filter: blur(10px);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .floating {
+      animation: float 3s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0% {
+        transform: translateY(0px);
+      }
+
+      50% {
+        transform: translateY(-20px);
+      }
+
+      100% {
+        transform: translateY(0px);
+      }
+    }
+
+    .hospital-card {
+      transition: all 0.3s ease;
+    }
+
+    .hospital-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+  </style>
+</head>
+
+    <!-- Login Modal -->
+    <div id="loginModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50">
+      <div class="flex items-center justify-center min-h-screen">
+          <div class="bg-white rounded-2xl p-8 max-w-md w-full mx-4 shadow-2xl">
+              <div class="flex justify-between items-center mb-6">
+                  <h2 class="text-3xl font-bold text-gray-800">Đăng nhập</h2>
+                  <button onclick="toggleLogin()" class="text-gray-600 hover:text-gray-800 transition duration-300">
+                      <i class="fas fa-times text-xl"></i>
+                  </button>
+              </div>
+              <form class="space-y-6">
+                  <div>
+                      <label class="block text-gray-700 mb-2 font-medium">Email</label>
+                      <input type="email" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition duration-300" placeholder="your@email.com">
+                  </div>
+                  <div>
+                      <label class="block text-gray-700 mb-2 font-medium">Mật khẩu</label>
+                      <input type="password" class="w-full px-4 py-3 rounded-xl border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition duration-300" placeholder="••••••••">
+                  </div>
+                  <div class="flex items-center justify-between">
+                      <label class="flex items-center">
+                          <input type="checkbox" class="form-checkbox h-5 w-5 text-blue-600 rounded">
+                          <span class="ml-2 text-gray-600">Ghi nhớ đăng nhập</span>
+                      </label>
+                      <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">Quên mật khẩu?</a>
+                  </div>
+                  <button class="w-full bg-blue-600 text-white py-4 rounded-xl hover:bg-blue-700 transition duration-300 font-semibold text-lg">
+                      Đăng nhập
+                  </button>
+                  <div class="text-center">
+                      <p class="text-gray-600">Chưa có tài khoản? <a href="#" class="text-blue-600 hover:text-blue-800 font-medium">Đăng ký ngay</a></p>
+                  </div>
+              </form>
+          </div>
+      </div>
+  </div>
+
+  <!-- Header -->
+  <header class="bg-white shadow-lg fixed w-full z-40">
+      <nav class="container mx-auto px-6 py-4">
+          <div class="flex justify-between items-center">
+              <div class="flex items-center">
+                  <i class="fas fa-heartbeat text-blue-600 text-3xl mr-2"></i>
+                  <span class="text-blue-600 text-2xl font-bold">HealthCare</span>
+              </div>
+              <div class="hidden md:flex items-center space-x-8">
+                  <button onclick="window.location.href='index.html'" class="text-gray-700 hover:text-blue-600 transition duration-300">Trang chủ</button>
+                  <a href="#" class="text-gray-700 hover:text-blue-600 transition duration-300">Dịch vụ</a>
+                  <button onclick="window.location.href='benhvien.html'" class="text-gray-700 hover:text-blue-600 transition duration-300">
+                      Bệnh viện
+                  </button>
+                  <a href="#" class="text-gray-700 hover:text-blue-600 transition duration-300">Bác sĩ</a>
+                  <a href="#" class="text-gray-700 hover:text-blue-600 transition duration-300">Liên hệ</a>
+                  <button onclick="toggleLogin()" class="text-blue-600 hover:text-blue-800 font-medium transition duration-300">
+                      Đăng nhập
+                  </button>
+                  <button class="bg-blue-600 text-white px-8 py-3 rounded-xl hover:bg-blue-700 transition duration-300 font-semibold">
+                      Đặt lịch ngay
+                  </button>
+              </div>
+          </div>
+      </nav>
+  </header>
+
+<!-- Main Content -->
+<main class="pt-24 bg-gray-50 min-h-screen">
+  <div class="container mx-auto px-6 py-8">
+    <h1 class="text-4xl font-bold text-gray-800 mb-8 text-center">Danh Sách Bệnh Viện</h1>
+
+    <!-- Search Bar -->
+    <div class="max-w-2xl mx-auto mb-12">
+      <div class="relative">
+        <input type="search"
+          class="w-full pl-12 pr-4 py-4 rounded-full border border-gray-300 focus:border-blue-500 focus:ring-2 focus:ring-blue-200 outline-none transition duration-300"
+          placeholder="Tìm kiếm bệnh viện...">
+        <i class="fas fa-search absolute left-4 top-1/2 transform -translate-y-1/2 text-gray-400"></i>
+      </div>
+    </div>
+
+    <!-- Hospital Grid -->
+    <div id="hospital-info" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+      <!-- Hospital cards will be inserted here -->
+    </div>
+
+    <!-- Error Message -->
+    <div id="error-message" class="text-center text-red-600 mt-8"></div>
+  </div>
+</main>
+
+<script>
+  async function getHospitalInfo() {
+  try {
+    const response = await fetch('http://localhost:3000/hospital', {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
+    }
+
+    const data = await response.json();
+    document.getElementById('hospital-info').innerHTML = "";
+
+    data.forEach(hospital => {
+      const hospitalElement = document.createElement('div');
+      hospitalElement.className = 'hospital-card bg-white rounded-2xl shadow-lg overflow-hidden';
+      hospitalElement.innerHTML = `
+        <div class="relative">
+          <img src="${hospital.image}" alt="${hospital.name}" 
+               class="w-full h-48 object-cover">
+          <div class="absolute top-4 right-4">
+            <button class="bg-white p-2 rounded-full shadow-lg hover:bg-blue-50 transition duration-300">
+              <i class="far fa-heart text-blue-600"></i>
+            </button>
+          </div>
+        </div>
+        <div class="p-6">
+          <h2 class="text-2xl font-bold text-gray-800 mb-3">
+            <a href="hospital-details.html?id=${hospital.id}" class="text-blue-600 hover:underline">${hospital.name}</a>
+          </h2>
+          <div class="space-y-2 mb-4">
+            <div class="flex items-start">
+              <i class="fas fa-map-marker-alt text-blue-600 mt-1 mr-3"></i>
+              <p class="text-gray-600">${hospital.address}</p>
+            </div>
+            <div class="flex items-center">
+              <i class="fas fa-phone text-blue-600 mr-3"></i>
+              <p class="text-gray-600">${hospital.phoneNumber}</p>
+            </div>
+            <div class="flex items-center">
+              <i class="fas fa-envelope text-blue-600 mr-3"></i>
+              <p class="text-gray-600">${hospital.email}</p>
+            </div>
+          </div>
+          <button class="w-full bg-blue-600 text-white py-3 rounded-xl hover:bg-blue-700 transition duration-300">
+            Đặt lịch khám
+          </button>
+        </div>
+      `;
+      document.getElementById('hospital-info').appendChild(hospitalElement);
+    });
+  } catch (error) {
+    document.getElementById('error-message').innerHTML = `
+      <div class="bg-red-50 p-4 rounded-lg">
+        <p class="text-red-800">Không thể lấy thông tin bệnh viện. Vui lòng thử lại sau.</p>
+      </div>
+    `;
+    console.error("Error fetching hospital information:", error);
+  }
+}
+
+  window.onload = getHospitalInfo;
+
+
+  function toggleLogin() {
+    const modal = document.getElementById('loginModal');
+    modal.classList.toggle('hidden');
+  }
+
+</script>
+</body>
+
+</html>

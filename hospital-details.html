@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="vi">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chi Tiết Bệnh Viện</title>
+</head>
+
+<body>
+  <h1>Chi Tiết Bệnh Viện</h1>
+  <div id="hospital-details" class="hospital-details">
+  </div>
+  <div id="error-message" class="error"></div>
+
+  <script>
+    function layIdBenhVienTuUrl() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const id = urlParams.get('id');
+      console.log("ID bệnh viện:", id);
+      return id;
+    }
+
+    async function layChiTietBenhVien() {
+      const idBenhVien = layIdBenhVienTuUrl();
+
+      if (!idBenhVien) {
+        document.getElementById('error-message').innerText = "ID bệnh viện không xác định.";
+        return;
+      }
+      console.log(idBenhVien);
+      try {
+        const response = await fetch(`http://localhost:3000/hospital/${idBenhVien}`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          }
+        });
+
+        if (!response.ok) {
+          throw new Error(`Lỗi HTTP! mã lỗi: ${response.status}`);
+        }
+
+        const data = await response.json();
+
+        document.getElementById('hospital-details').innerHTML = `
+      <h2>${data.name}</h2>
+      <p><strong>Địa chỉ:</strong> ${data.address}</p>
+      <p><strong>Điện thoại:</strong> ${data.phone}</p>
+      <p><strong>Email:</strong> ${data.email}</p>
+      <p><strong>Website:</strong> <a href="${data.website}" target="_blank">${data.website}</a></p>
+      <p><strong>Mô tả:</strong> ${data.description}</p>
+      ${data.image ? `<img src="${data.image}" alt="${data.name}" width="200">` : ''}
+    `;
+
+        document.getElementById('error-message').innerText = "";
+      } catch (error) {
+        document.getElementById('error-message').innerHTML = `
+      <div class="bg-red-50 p-4 rounded-lg">
+        <p class="text-red-800">Không thể lấy thông tin chi tiết bệnh viện. Vui lòng thử lại sau.</p>
+      </div>
+    `;
+        console.error("Lỗi khi lấy thông tin chi tiết bệnh viện:", error);
+      }
+    }
+
+    window.onload = layChiTietBenhVien;
+  </script>
+</body>
+
+</html>
